@@ -19,10 +19,13 @@ const PORT = process.env.PORT || 3000;
 // DATABASE CONNECTION
 // -------------------------------
 mongoose
-  .connect(process.env.MONGODB_URI || "mongodb://localhost:27017/philmar_resort", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  })
+  .connect(
+    process.env.MONGODB_URI || "mongodb://localhost:27017/philmar_resort",
+    {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    }
+  )
   .then(() => {
     console.log("✅ Connected to MongoDB successfully");
     createDefaultAdmin(); // 👈 Ensure admin account exists
@@ -56,7 +59,8 @@ app.use(
     resave: false,
     saveUninitialized: false,
     store: MongoStore.create({
-      mongoUrl: process.env.MONGODB_URI || "mongodb://localhost:27017/philmar_resort",
+      mongoUrl:
+        process.env.MONGODB_URI || "mongodb://localhost:27017/philmar_resort",
       collectionName: "sessions",
     }),
     cookie: { maxAge: 1000 * 60 * 60 * 24 }, // 1 day
@@ -97,7 +101,9 @@ const Admin = require("./models/Admin");
 // -------------------------------
 async function createDefaultAdmin() {
   try {
-    const existingAdmin = await Admin.findOne({ username: "philmarresortadmin" });
+    const existingAdmin = await Admin.findOne({
+      username: "philmarresortadmin",
+    });
     if (!existingAdmin) {
       const newAdmin = new Admin({
         username: "philmarresortadmin",
@@ -172,7 +178,8 @@ app.post("/booking/submit", async (req, res) => {
     await newBooking.save();
     console.log("✅ New booking saved:", newBooking);
 
-    req.session.successMessage = "Your booking has been successfully submitted!";
+    req.session.successMessage =
+      "Your booking has been successfully submitted!";
     res.redirect("/profile");
   } catch (err) {
     console.error("❌ Error saving booking:", err);
@@ -221,7 +228,9 @@ app.get("/profile", async (req, res) => {
       notifications.push({ message: req.session.successMessage });
       delete req.session.successMessage;
     } else {
-      notifications.push({ message: `Welcome back, ${user.fullname || "Guest"}!` });
+      notifications.push({
+        message: `Welcome back, ${user.fullname || "Guest"}!`,
+      });
     }
 
     res.render("profile", {
@@ -279,12 +288,20 @@ app.post("/profile/update-password", async (req, res) => {
 // -------------------------------
 app.get("/login", (req, res) => {
   if (req.session.user) return res.redirect("/");
-  res.render("login", { title: "Login / Signup | Philmar Resort", error: null, success: null });
+  res.render("login", {
+    title: "Login / Signup | Philmar Resort",
+    error: null,
+    success: null,
+  });
 });
 
 app.get("/signup", (req, res) => {
   if (req.session.user) return res.redirect("/");
-  res.render("signup", { title: "Sign Up | Philmar Resort", error: null, success: null });
+  res.render("signup", {
+    title: "Sign Up | Philmar Resort",
+    error: null,
+    success: null,
+  });
 });
 
 // SIGNUP
