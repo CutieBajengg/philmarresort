@@ -1,129 +1,40 @@
-<%- include('navbaradmin') %>
-
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title><%= title %></title>
-  <link rel="stylesheet" href="/css/main.css" />
-  <link rel="icon" type="image/png" href="/images/logo.png" />
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background-color: #f4f9f9;
-      margin: 0;
-      padding: 0;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/css/main.css" />
+    <link rel="icon" type="image/png" href="/images/logo.png" />
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f4f9f9;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <%- include('navbaradmin') %>
+    <div
+      style="
+        padding: 40px;
+        max-width: 1000px;
+        margin: auto;
+        font-family: Poppins;
+      "
+    >
+      <h2>📊 Analytics Overview</h2>
+      <p>Here you can view booking and revenue statistics.</p>
 
-    .admin-container {
-      max-width: 1200px;
-      margin: 40px auto;
-      padding: 30px;
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-      animation: fadeIn 0.4s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    h2 {
-      color: #008080;
-      border-left: 5px solid #008080;
-      padding-left: 10px;
-      margin-bottom: 25px;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      text-align: left;
-    }
-
-    th, td {
-      padding: 12px 15px;
-      border-bottom: 1px solid #ddd;
-    }
-
-    th {
-      background-color: #008080;
-      color: white;
-    }
-
-    tr:hover {
-      background-color: #f1f1f1;
-    }
-
-    .status {
-      font-weight: bold;
-      text-transform: capitalize;
-      border-radius: 6px;
-      padding: 6px 12px;
-      display: inline-block;
-      text-align: center;
-      transition: 0.3s;
-    }
-
-    .status.accepted { background-color: #d4edda; color: #155724; }
-    .status.declined { background-color: #f8d7da; color: #721c24; }
-    .status.pending { background-color: #e2e3e5; color: #383d41; }
-
-    .actions {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-
-    .actions button {
-      background-color: #008080;
-      color: white;
-      border: none;
-      padding: 8px 14px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: 0.3s;
-      font-family: 'Poppins', sans-serif;
-      font-size: 14px;
-    }
-
-    .actions button:hover { background-color: #006666; }
-    .decline { background-color: #cc0000; }
-    .decline:hover { background-color: #a30000; }
-
-    .no-data {
-      text-align: center;
-      color: #777;
-      padding: 20px 0;
-    }
-
-    .flash-message {
-      text-align: center;
-      padding: 10px;
-      border-radius: 5px;
-      margin-bottom: 15px;
-      font-weight: 600;
-      animation: fadeIn 0.5s ease;
-    }
-    .flash-success { background-color: #d4edda; color: #155724; }
-    .flash-error { background-color: #f8d7da; color: #721c24; }
-  </style>
-</head>
-<body>
-<div style="padding:40px; max-width:1000px; margin:auto; font-family:Poppins;">
-  <h2>📊 Analytics Overview</h2>
-  <p>Here you can view booking and revenue statistics.</p>
-
-  <div style="margin-top:20px;">
-    <ul style="list-style:none; padding:0;">
-      <li>Total Bookings: <%= totalBookings || 0 %></li>
-      <li>Total Guests: <%= totalGuests || 0 %></li>
-      <li>Total Revenue: ₱<%= totalRevenue || 0 %></li>
-    </ul>
-  </div>
-</div>
-</body>
+      <div style="margin-top: 20px">
+        <ul style="list-style: none; padding: 0">
+          <li>Total Bookings: <%= totalBookings || 0 %></li>
+          <li>Total Guests: <%= totalGuests || 0 %></li>
+          <li>Total Revenue: ₱<%= totalRevenue || 0 %></li>
+        </ul>
+      </div>
+    </div>
+  </body>
 </html>
